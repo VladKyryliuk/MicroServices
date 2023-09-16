@@ -2,9 +2,9 @@ package com.example.microservices.repository;
 
 import com.example.microservices.model.Smartphone;
 import com.mongodb.lang.NonNull;
+import com.mongodb.lang.NonNullApi;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface SmartphoneRepository extends MongoRepository<Smartphone,String> {
-    @NonNull
-    void deleteById(String id);
+    void deleteById(@NonNull String id);
 }
