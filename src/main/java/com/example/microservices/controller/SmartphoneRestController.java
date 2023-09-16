@@ -13,12 +13,7 @@ public class SmartphoneRestController {
     @Autowired
     SmartphoneService service;
 
-    @RequestMapping("hello")
-    String sayHello(){
-        return "<h1>Hello<h1>";
-    }
-
-    @RequestMapping("")
+    @RequestMapping()
     List<Smartphone> showAll(){
         return service.getAll();
     }
@@ -31,14 +26,12 @@ public class SmartphoneRestController {
     void deleteOne(@PathVariable String id){
         service.del(id);
     }
-    @PostMapping("")
+    @PostMapping()
     Smartphone create(@RequestBody Smartphone smartphone){
-        service.add(smartphone);
-        return smartphone ;
+       return service.add(smartphone);
     }
-    @PutMapping("")
+    @PutMapping()
     Smartphone update(@RequestBody Smartphone smartphone){
-        service.upd(smartphone);
-        return smartphone;
+        return service.upd(smartphone);
     }
 }

@@ -1,9 +1,11 @@
 package com.example.microservices.service;
 
 import com.example.microservices.model.Smartphone;
-import jakarta.annotation.PostConstruct;
+import com.example.microservices.repository.SmartphoneRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,39 +14,37 @@ import java.util.stream.Collectors;
 public class SmartphoneService {
     private List<Smartphone> smartphones = new ArrayList<>();
 
-    @PostConstruct
-    void init(){
-        smartphones.add(new Smartphone("1","Iphone X","Apple"));
-        smartphones.add(new Smartphone("2","Galaxy S20","Samsung"));
-        smartphones.add(new Smartphone("3","Pixel 6","Google"));
-    }
+    @Autowired
+    SmartphoneRepository repository;
+
+//    @PostConstruct
+//    void init(){
+//        smartphones.add(new Smartphone("1","Iphone X","Apple"));
+//        smartphones.add(new Smartphone("2","Galaxy S20","Samsung"));
+//        smartphones.add(new Smartphone("3","Pixel 6","Google"));
+//        repository.saveAll(smartphones);
+//    }
 
     public List<Smartphone> getAll(){
-        return smartphones;
+        return repository.findAll();
     }
 
     //Read
     public Smartphone get(String id){
-        return smartphones.stream().filter(e -> e.getId()
-                .equals(id))
-                .findFirst()
-                .orElse(null);
+        return  repository.findById(id).orElse(null);
     }
     //Delete
-    public List<Smartphone> del(String id){
-         smartphones = smartphones.stream().filter(e ->!e.getId().equals(id))
-                .toList();
-        return smartphones;
+    public void del(String id){
+         repository.deleteById(id);
     }
     //Create
-    public void add(Smartphone smartphone){
-        smartphones.add(smartphone);
+    public Smartphone add(Smartphone smartphone){
+        smartphone.setCreatedAt(LocalDateTime.now());
+        return repository.save(smartphone);
     }
     //Update
-    public List<Smartphone> upd(Smartphone smartphone){
-         smartphones = smartphones.stream()
-                 .map(el->el.getId().equals(smartphone.getId()) ? smartphone:el)
-                 .collect(Collectors.toList());
-         return smartphones;
+    public Smartphone upd(Smartphone smartphone){
+        smartphone.setUpdatedAt(LocalDateTime.now());
+        return repository.save(smartphone);
     }
 }
