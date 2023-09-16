@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class SmartphoneService {
-    private List<Smartphone> smartphones = new ArrayList<>();
+//    private List<Smartphone> smartphones = new ArrayList<>();
 
     @Autowired
     SmartphoneRepository repository;
