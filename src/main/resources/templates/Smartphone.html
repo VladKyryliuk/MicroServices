@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smartphones</title>
+    <style>
+        .tabl {
+            border-collapse: collapse;
+            margin: 0 auto;
+            width: auto;
+            height: 250px;
+        }
+
+        .tabl th, .tabl td {
+            border: 1px solid black;
+            padding: 8px;
+            width: 200px
+        }
+
+        .table-divider {
+            color: white;
+            background-color: rgba(139, 139, 139, 0.707);
+            margin: 10px 0;
+        }
+        .table-divider input {
+            width: 300px;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            border: none;
+            background: none;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+    <table class="tabl">
+        <thead>
+        <tr class="table-divider">
+            <th class="table-divider">ID</th>
+            <th class="table-divider">Name</th>
+            <th class="table-divider">Description</th>
+            <th class="table-divider">CreatedAt</th>
+            <th class="table-divider">UpdatedAt</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-divider" th:each="el : ${el}">
+            <form method="post" th:action="@{/ui/v1/smartphones/edit/{id}(id=${el.id})}">
+                <td class="table-divider">
+                        <input name="id" type="text" th:value="${el.id}" readonly>
+                </td>
+                <td class="table-divider">
+                        <input name="name" type="text" th:value="${el.name}">
+                </td>
+                <td class="table-divider">
+                        <input name="description" type="text" th:value="${el.description}">
+                </td>
+                <td class="table-divider"  th:text="${el.createdAt}"></td>
+                <td class="table-divider" th:text="${el.updatedAt}"></td>
+
+                <td class="table-divider">
+                    <button type="submit">  Edit  </button><br>
+                    <a th:href="@{/ui/v1/smartphones/del/{id}(id=${el.id})}">  Delete  </a>
+                </td>
+            </form>
+        </tr>
+        <tr>
+            <form method="post" th:action="@{/ui/v1/smartphones/create/}">
+                <td>
+                    <span>генерується автоматично</span>
+                </td>
+                <td>
+                    <input name="name" type="text">
+                </td>
+                <td>
+                    <input name="description" type="text">
+                </td>
+                <td>
+                    <button type="submit">Create</button>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
