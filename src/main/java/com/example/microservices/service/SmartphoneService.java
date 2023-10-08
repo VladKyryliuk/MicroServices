@@ -14,8 +14,12 @@ import java.util.List;
 public class SmartphoneService {
 //    private List<Smartphone> smartphones = new ArrayList<>();
 
+
+    private final SmartphoneRepository repository;
     @Autowired
-    SmartphoneRepository repository;
+    public SmartphoneService(SmartphoneRepository repository) {
+        this.repository = repository;
+    }
 
 //    @PostConstruct
 //    void init(){

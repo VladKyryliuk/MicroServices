@@ -14,8 +14,13 @@ import java.util.List;
 @RequestMapping("/api/v1/smartphones/")
 @Tag(name = "Controller Smartphones", description = "Full CRUD operations")
 public class SmartphoneRestController {
+
+    private final SmartphoneService service;
     @Autowired
-    SmartphoneService service;
+    public SmartphoneRestController(SmartphoneService service) {
+        this.service = service;
+    }
+
     @GetMapping()
     @Operation(summary = "Get all smartphones", description = "Returns all object")
     List<Smartphone> showAll(){

@@ -13,8 +13,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/ui/v1/smartphones/")
 public class SmartphoneGUIController {
+
+    private final SmartphoneService service;
     @Autowired
-    SmartphoneService service;
+    public SmartphoneGUIController(SmartphoneService service) {
+        this.service = service;
+    }
 
     @RequestMapping()
         String showSmartphone(Model model){
