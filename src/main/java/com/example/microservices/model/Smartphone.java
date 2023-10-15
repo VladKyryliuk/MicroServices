@@ -22,29 +22,30 @@ public class Smartphone {
     description = "mongoDB identifier",
     example = "650823d7fa2c4130d7210cb1",
     accessMode = Schema.AccessMode.READ_ONLY)
-    public String id;
+    private String id;
     @Schema(name = "name",
     description = "Name smartphone",
     example = "Galaxy S22 Ultra",
     accessMode = Schema.AccessMode.READ_WRITE)
-    public String name;
+    private String name;
     @Schema(name = "description",
     description = "Company name",
     example = "Sumsung",
     accessMode = Schema.AccessMode.READ_WRITE)
-    public String description;
+    private String description;
     @Schema(name = "CeratedAt",
     description = "Information about when the object was created",
     example = "2023-09-23T23:34:54.572",
     accessMode = Schema.AccessMode.READ_WRITE)
-    public LocalDateTime createdAt;
+    private LocalDateTime createdAt;
     @Schema(name = "updateAt",
     description = "information about when the object was update",
     example = "2023-09-25T14:29:39.772",
     accessMode = Schema.AccessMode.READ_WRITE)
-    public LocalDateTime updatedAt;
+    private LocalDateTime updatedAt;
 
-    public Smartphone(String name, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Smartphone(String name, String description,
+                      LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.name = name;
         this.description = description;
         this.createdAt = createdAt;
