@@ -2,11 +2,13 @@ package com.example.microservices.service;
 
 import com.example.microservices.model.Smartphone;
 import com.example.microservices.repository.SmartphoneRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 //import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 

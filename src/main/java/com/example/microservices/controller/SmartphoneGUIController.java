@@ -20,7 +20,7 @@ public class SmartphoneGUIController {
         this.service = service;
     }
 
-    @RequestMapping()
+     @RequestMapping()
         String showSmartphone(Model model){
         List<Smartphone> el = service.getAll();
         model.addAttribute("el",el);
